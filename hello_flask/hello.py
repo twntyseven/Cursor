@@ -19,6 +19,11 @@ def hello():
 def goodbye():
    message = "<h2>This is the second page!</h2>"
    return message
+@app.route('/third_page')
+def third_page():
+   message = "<h2>This is the third page!</h2>"
+   return message
+
 
 if __name__ == '__main__':
    app.run()
