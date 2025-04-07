@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import random
 
 app = Flask(__name__)
@@ -29,11 +29,21 @@ def third_page():
 def form():
    return render_template("favorite_form.html")
 
+@app.route('/results', methods=["POST"])
+def results():
+   color_choice = request.form['color']
+   number_choice = request.form['luck_num']
+   class_choice = request.form['fav_class']
+   movie_choice = request.form['best_pix']
+   return render_template("form_results.html", color = color_choice, lucky_number = number_choice, fav_class = class_choice, best_pix = movie_choice)
+
 @app.route('/thanks')
 def thanks():
+   thing = "bomb"
    person = "Bob"
    action = "dancing"
-   return render_template("tynote.html", name = person, verb = action)
+   activity = "person"
+   return render_template("tynote.html", name = person, verb = action, gift = thing, noun = activity)
 
 if __name__ == '__main__':
    app.run()
