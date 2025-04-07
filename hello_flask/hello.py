@@ -31,10 +31,26 @@ def form():
 
 @app.route('/results', methods=["POST"])
 def results():
-   color_choice = request.form['color']
+   color_choice = request.form['color'].lower().strip()
+   colors = ["red","blue","green","yellow","purple","orange","pink","brown","black","white"]
+   if color_choice not in colors:
+      color_choice = "Sorry, '{0}' is not a valid color!".format(color_choice.title())
+   else:
+      color_choice = color_choice.title()
+
    number_choice = request.form['luck_num']
    class_choice = request.form['fav_class']
-   movie_choice = request.form['best_pix']
+   movie_choice = request.form['best_pix'].lower().strip() #Remove whitespace and make lowercase 
+   films = ["toy story","a bug's life","toy story 2","monsters, inc.",
+      "finding nemo", "the incredibles","cars","ratatouille","wall-e","up",
+      "toy story 3","cars 2", "brave","monsters university","inside out",
+      "the good dinosaur","finding dory", "cars 3","coco","incredibles 2",
+      "toy story 4","onward","soul"]
+   if movie_choice not in films:
+      movie_choice = "Sorry, '{0}' isn't a Pixar movie!".format(movie_choice.title())
+   else:
+      movie_choice = movie_choice.title()
+
    return render_template("form_results.html", color = color_choice, lucky_number = number_choice, fav_class = class_choice, best_pix = movie_choice)
 
 @app.route('/thanks')
