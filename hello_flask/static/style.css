@@ -1,0 +1,13 @@
+h2{
+    color: darkorange;
+}
+input{
+    margin: 5px;
+}
+li{
+    margin: 5px;
+    background-color: bisque;
+    border: 1px;
+    width: 200px;
+    block-size: 50px;
+}
